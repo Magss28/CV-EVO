@@ -7,7 +7,8 @@ import {
   addDoc,
   doc,
   updateDoc,
-  deleteDoc
+  deleteDoc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -61,14 +62,21 @@ document.getElementById("matricula");
 const guardarVehiculo =
 document.getElementById("guardarVehiculo");
 
+const vendidosDiv =
+document.getElementById("vendidos");
+
+const vendidosSection =
+document.getElementById("vendidosSection");
+
 let catalogoAutos = {};
 
 document
 .getElementById("btnCatalogo")
 .addEventListener("click", () => {
 
-  catalogoSection.style.display = "block";
-  activosSection.style.display = "none";
+catalogoSection.style.display = "block";
+activosSection.style.display = "none";
+vendidosSection.style.display = "none";
 
 });
 
@@ -76,8 +84,19 @@ document
 .getElementById("btnActivos")
 .addEventListener("click", () => {
 
+catalogoSection.style.display = "none";
+activosSection.style.display = "block";
+vendidosSection.style.display = "none";
+
+});
+
+document
+.getElementById("btnVendidos")
+.addEventListener("click", () => {
+
   catalogoSection.style.display = "none";
-  activosSection.style.display = "block";
+  activosSection.style.display = "none";
+  vendidosSection.style.display = "block";
 
 });
 
@@ -227,6 +246,13 @@ onSnapshot(
         </button>
 
         <button
+          onclick="venderVehiculo('${doc.id}')"
+        >
+          ✅ Vender
+        </button>
+        
+        
+        <button
           onclick="eliminarVehiculo('${doc.id}')"
         >
           🗑️ Eliminar
@@ -240,6 +266,44 @@ onSnapshot(
   }
 );
 
+// ======================
+// VENDIDOS
+// ======================
+
+onSnapshot(
+  collection(db, "vendidos"),
+  (snapshot) => {
+
+    vendidosDiv.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+
+      const auto = doc.data();
+
+      vendidosDiv.innerHTML += `
+      <div class="card">
+
+        <h2>${auto.marca} ${auto.modelo}</h2>
+
+        <p>📄 Matrícula: ${auto.matricula}</p>
+
+        <p>
+          💰 Venta:
+          <span class="precio">
+            $${auto.precioVenta.toLocaleString()}
+          </span>
+        </p>
+
+        <p>
+          📅 ${auto.fechaVenta}
+        </p>
+
+      </div>
+      `;
+    });
+
+  }
+);
 
 // ======================
 // FORMULARIO
@@ -516,6 +580,46 @@ window.eliminarVehiculo = async (
 
   await deleteDoc(
     doc(db, "activos", id)
+  );
+
+};
+
+
+window.venderVehiculo = async (
+  id
+) => {
+
+  const confirmar =
+  confirm(
+    "¿Marcar vehículo como vendido?"
+  );
+
+  if(!confirmar)
+    return;
+
+  const referencia =
+  doc(db, "activos", id);
+
+  const documento =
+  await getDoc(referencia);
+
+  if(!documento.exists())
+    return;
+
+  const auto =
+  documento.data();
+
+  await addDoc(
+    collection(db, "vendidos"),
+    {
+      ...auto,
+      fechaVenta:
+      new Date().toLocaleString()
+    }
+  );
+
+  await deleteDoc(
+    referencia
   );
 
 };
