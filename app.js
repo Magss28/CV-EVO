@@ -27,6 +27,9 @@ document.getElementById("catalogoSection");
 const activosSection =
 document.getElementById("activosSection");
 
+const selectVehiculo =
+document.getElementById("selectVehiculo");
+
 document
 .getElementById("btnCatalogo")
 .addEventListener("click", () => {
@@ -56,9 +59,29 @@ onSnapshot(
 
     autosDiv.innerHTML = "";
 
+    if(selectVehiculo){
+
+      selectVehiculo.innerHTML = `
+      <option value="">
+        Seleccionar...
+      </option>
+      `;
+
+    }
+
     snapshot.forEach((doc) => {
 
       const auto = doc.data();
+
+      if(selectVehiculo){
+
+        selectVehiculo.innerHTML += `
+        <option value="${doc.id}">
+          ${auto.marca} ${auto.modelo}
+        </option>
+        `;
+
+      }
 
       const precioMaxCompra =
       auto.precioConce * 0.5;
@@ -121,7 +144,7 @@ onSnapshot(
           <span class="precio">
             $${auto.precioCompra.toLocaleString()}
           </span>
-          </p>
+        </p>
 
         <p>
           💵 Venta:
