@@ -183,6 +183,12 @@ onSnapshot(
           }
         </button>
 
+        <button
+          onclick="editarPrecioCatalogo('${doc.id}', ${auto.precioConce})"
+        >
+          ✏️ Editar Precio
+        </button>
+
               </div>
               `;
             });
@@ -653,6 +659,35 @@ async (
     {
       activo:
       estabaDeshabilitado
+    }
+  );
+
+};
+
+window.editarPrecioCatalogo =
+async (
+  id,
+  precioActual
+) => {
+
+  const nuevoPrecio =
+  prompt(
+    "Nuevo precio:",
+    precioActual
+  );
+
+  if(
+    !nuevoPrecio ||
+    isNaN(nuevoPrecio)
+  ){
+    return;
+  }
+
+  await updateDoc(
+    doc(db, "catalogo", id),
+    {
+      precioConce:
+      Number(nuevoPrecio)
     }
   );
 
