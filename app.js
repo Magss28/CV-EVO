@@ -6,6 +6,7 @@ import {
   onSnapshot,
   addDoc,
   doc,
+  setDoc,
   updateDoc,
   deleteDoc,
   getDoc
@@ -36,6 +37,9 @@ document.getElementById("activosSection");
 
 const selectVehiculo =
 document.getElementById("selectVehiculo");
+
+const vehiculosLista =
+document.getElementById("vehiculosLista");
 
 const calculos =
 document.getElementById("calculos");
@@ -191,11 +195,7 @@ onSnapshot(
 
     if(selectVehiculo){
 
-      selectVehiculo.innerHTML = `
-      <option value="">
-        Seleccionar...
-      </option>
-      `;
+      vehiculosLista.innerHTML = "";
 
     }
 
@@ -205,12 +205,10 @@ onSnapshot(
 
       catalogoAutos[doc.id] = auto;
 
-      if(selectVehiculo){
+      if(vehiculosLista){
 
-        selectVehiculo.innerHTML += `
-        <option value="${doc.id}">
-          ${auto.marca} ${auto.modelo}
-        </option>
+        vehiculosLista.innerHTML += `
+        <option value="${auto.marca} ${auto.modelo}">
         `;
 
       }
@@ -829,8 +827,17 @@ importarMotos.addEventListener(
 
     for(const moto of motos){
 
-      await addDoc(
-        collection(db, "catalogo"),
+      const idVehiculo =
+      `${moto.marca}-${moto.modelo}`
+      .toLowerCase()
+      .replaceAll(" ", "-");
+
+      await setDoc(
+        doc(
+          db,
+          "catalogo",
+          idVehiculo
+        ),
         moto
       );
 
