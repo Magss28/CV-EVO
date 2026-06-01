@@ -56,3 +56,26 @@ h1{
 #activosSection{
     display:none;
 }
+
+select,
+input[type="text"]{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    margin-top:5px;
+}
+
+#guardarVehiculo{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#calculos{
+    font-size:18px;
+    font-weight:bold;
+}

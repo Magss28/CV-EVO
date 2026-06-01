@@ -31,6 +31,88 @@
             ➕ Agregar Vehículo
         </button>
 
+        <div id="formularioActivo" style="display:none;">
+
+            <div class="card">
+
+                <h2>Nuevo Vehículo</h2>
+
+                <label>Vehículo</label>
+
+                <select id="selectVehiculo">
+                    <option value="">
+                        Seleccionar...
+                    </option>
+                </select>
+
+                <br><br>
+
+                <label>Matrícula</label>
+
+                <input
+                    type="text"
+                    id="matricula"
+                    placeholder="RZI001D"
+                >
+
+                <br><br>
+
+                <label>
+                    <input type="checkbox" id="fullTunning">
+                    Full Tunning
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="checkbox" id="motor">
+                    Motor
+                </label>
+
+                <br>
+
+                <label>
+                    <input type="checkbox" id="frenos">
+                    Frenos
+                </label>
+
+                <br>
+
+                <label>
+                    <input type="checkbox" id="transmision">
+                    Transmisión
+                </label>
+
+                <br>
+
+                <label>
+                    <input type="checkbox" id="suspension">
+                    Suspensión
+                </label>
+
+                <br>
+
+                <label>
+                    <input type="checkbox" id="blindaje">
+                    Blindaje
+                </label>
+
+                <br><br>
+
+                <div id="calculos">
+                    Costo Total: $0
+                </div>
+
+                <br>
+
+                <button id="guardarVehiculo">
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
         <div id="activos"></div>
 
     </div>

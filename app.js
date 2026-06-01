@@ -121,7 +121,7 @@ onSnapshot(
           <span class="precio">
             $${auto.precioCompra.toLocaleString()}
           </span>
-        </p>
+          </p>
 
         <p>
           💵 Venta:
@@ -159,15 +159,24 @@ onSnapshot(
 
 
 // ======================
-// BOTON AGREGAR
+// FORMULARIO
 // ======================
+
+const formularioActivo =
+document.getElementById("formularioActivo");
 
 document
 .getElementById("btnAgregar")
 .addEventListener("click", () => {
 
-  alert(
-    "Próximo paso: formulario para agregar vehículos."
-  );
+  if(formularioActivo.style.display === "none"){
+
+    formularioActivo.style.display = "block";
+
+  }else{
+
+    formularioActivo.style.display = "none";
+
+  }
 
 });
