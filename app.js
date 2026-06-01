@@ -38,9 +38,6 @@ document.getElementById("activosSection");
 const selectVehiculo =
 document.getElementById("selectVehiculo");
 
-const vehiculosLista =
-document.getElementById("vehiculosLista");
-
 const calculos =
 document.getElementById("calculos");
 
@@ -195,7 +192,11 @@ onSnapshot(
 
     if(selectVehiculo){
 
-      vehiculosLista.innerHTML = "";
+      selectVehiculo.innerHTML = `
+      <option value="">
+        Seleccionar...
+      </option>
+      `;
 
     }
 
@@ -205,10 +206,12 @@ onSnapshot(
 
       catalogoAutos[doc.id] = auto;
 
-      if(vehiculosLista){
+      if(selectVehiculo){
 
-        vehiculosLista.innerHTML += `
-        <option value="${auto.marca} ${auto.modelo}">
+        selectVehiculo.innerHTML += `
+        <option value="${doc.id}">
+          ${auto.marca} ${auto.modelo}
+        </option>
         `;
 
       }
