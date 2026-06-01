@@ -20,6 +20,12 @@ const firebaseConfig = {
   appId: "1:132331919872:web:6898c5f7b2e312497856e5"
 };
 
+const buscador =
+document.getElementById("buscador");
+
+let
+
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
