@@ -20,11 +20,6 @@ const firebaseConfig = {
   appId: "1:132331919872:web:6898c5f7b2e312497856e5"
 };
 
-const buscador =
-document.getElementById("buscador");
-
-let
-
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -73,6 +68,40 @@ document.getElementById("vendidos");
 
 const vendidosSection =
 document.getElementById("vendidosSection");
+
+const buscador =
+document.getElementById("buscador");
+
+buscador.addEventListener(
+  "input",
+  () => {
+
+    const texto =
+    buscador.value.toLowerCase();
+
+    const tarjetas =
+    document.querySelectorAll(".card");
+
+    tarjetas.forEach((card) => {
+
+      const contenido =
+      card.innerText.toLowerCase();
+
+      if(
+        contenido.includes(texto)
+      ){
+        card.style.display = "block";
+      }else{
+        card.style.display = "none";
+      }
+
+    });
+
+  }
+);
+
+
+
 
 let catalogoAutos = {};
 
