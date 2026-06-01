@@ -30,6 +30,29 @@ document.getElementById("activosSection");
 const selectVehiculo =
 document.getElementById("selectVehiculo");
 
+const calculos =
+document.getElementById("calculos");
+
+const fullTunning =
+document.getElementById("fullTunning");
+
+const motor =
+document.getElementById("motor");
+
+const frenos =
+document.getElementById("frenos");
+
+const transmision =
+document.getElementById("transmision");
+
+const suspension =
+document.getElementById("suspension");
+
+const blindaje =
+document.getElementById("blindaje");
+
+let catalogoAutos = {};
+
 document
 .getElementById("btnCatalogo")
 .addEventListener("click", () => {
@@ -73,6 +96,8 @@ onSnapshot(
 
       const auto = doc.data();
 
+      catalogoAutos[doc.id] = auto;
+
       if(selectVehiculo){
 
         selectVehiculo.innerHTML += `
@@ -114,6 +139,7 @@ onSnapshot(
       </div>
       `;
     });
+
   }
 );
 
@@ -203,3 +229,117 @@ document
   }
 
 });
+
+
+// ======================
+// CALCULOS
+// ======================
+
+function actualizarCosto() {
+
+  const idVehiculo =
+  selectVehiculo.value;
+
+  if(!idVehiculo){
+
+    calculos.innerHTML =
+    "Costo Total: $0";
+
+    return;
+  }
+
+  const auto =
+  catalogoAutos[idVehiculo];
+
+  let total =
+  auto.precioConce * 0.5;
+
+  let html = `
+    Compra Base:
+    $${(auto.precioConce * 0.5).toLocaleString()}
+  `;
+
+  if(fullTunning.checked){
+
+    total += 55000;
+
+    html += "<br>Full Tunning: $55.000";
+
+  }
+
+  if(motor.checked){
+
+    total += 5000;
+
+  }
+
+  if(frenos.checked){
+
+    total += 5000;
+
+  }
+
+  if(transmision.checked){
+
+    total += 5000;
+
+  }
+
+  if(suspension.checked){
+
+    total += 5000;
+
+  }
+
+  if(blindaje.checked){
+
+    total += 5000;
+
+  }
+
+  html += `
+    <hr>
+    <strong>
+    Costo Total:
+    $${total.toLocaleString()}
+    </strong>
+  `;
+
+  calculos.innerHTML = html;
+
+}
+
+selectVehiculo.addEventListener(
+  "change",
+  actualizarCosto
+);
+
+fullTunning.addEventListener(
+  "change",
+  actualizarCosto
+);
+
+motor.addEventListener(
+  "change",
+  actualizarCosto
+);
+
+frenos.addEventListener(
+  "change",
+  actualizarCosto
+);
+
+transmision.addEventListener(
+  "change",
+  actualizarCosto
+);
+
+suspension.addEventListener(
+  "change",
+  actualizarCosto
+);
+
+blindaje.addEventListener(
+  "change",
+  actualizarCosto
+);
