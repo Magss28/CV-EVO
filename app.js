@@ -3,7 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebas
 import {
   getFirestore,
   collection,
-  onSnapshot
+  onSnapshot,
+  addDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -50,6 +51,12 @@ document.getElementById("suspension");
 
 const blindaje =
 document.getElementById("blindaje");
+
+const matricula =
+document.getElementById("matricula");
+
+const guardarVehiculo =
+document.getElementById("guardarVehiculo");
 
 let catalogoAutos = {};
 
@@ -342,4 +349,109 @@ suspension.addEventListener(
 blindaje.addEventListener(
   "change",
   actualizarCosto
+);
+
+// ======================
+// GUARDAR VEHICULO
+// ======================
+
+guardarVehiculo.addEventListener(
+  "click",
+  async () => {
+
+    const idVehiculo =
+    selectVehiculo.value;
+
+    if(!idVehiculo){
+
+      alert("Seleccioná un vehículo");
+
+      return;
+    }
+
+    if(!matricula.value){
+
+      alert("Ingresá una matrícula");
+
+      return;
+    }
+
+    const auto =
+    catalogoAutos[idVehiculo];
+
+    let precioCompra =
+    auto.precioConce * 0.5;
+
+    if(fullTunning.checked)
+      precioCompra += 55000;
+
+    if(motor.checked)
+      precioCompra += 5000;
+
+    if(frenos.checked)
+      precioCompra += 5000;
+
+    if(transmision.checked)
+      precioCompra += 5000;
+
+    if(suspension.checked)
+      precioCompra += 5000;
+
+    if(blindaje.checked)
+      precioCompra += 5000;
+
+    await addDoc(
+      collection(db, "activos"),
+      {
+        marca: auto.marca,
+        modelo: auto.modelo,
+
+        matricula:
+        matricula.value.toUpperCase(),
+
+        precioCompra:
+        precioCompra,
+
+        precioVenta:
+        precioCompra,
+
+        fullTunning:
+        fullTunning.checked,
+
+        motor:
+        motor.checked,
+
+        frenos:
+        frenos.checked,
+
+        transmision:
+        transmision.checked,
+
+        suspension:
+        suspension.checked,
+
+        blindaje:
+        blindaje.checked,
+
+        estado:
+        "Disponible"
+      }
+    );
+
+    alert(
+      "Vehículo agregado correctamente"
+    );
+
+    matricula.value = "";
+
+    fullTunning.checked = false;
+    motor.checked = false;
+    frenos.checked = false;
+    transmision.checked = false;
+    suspension.checked = false;
+    blindaje.checked = false;
+
+    actualizarCosto();
+
+  }
 );
