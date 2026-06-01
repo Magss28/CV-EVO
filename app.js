@@ -19,6 +19,12 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const autosDiv = document.getElementById("autos");
+const activosDiv = document.getElementById("activos");
+
+
+// =======================
+// CATALOGO
+// =======================
 
 onSnapshot(
   collection(db, "catalogo"),
@@ -35,6 +41,7 @@ onSnapshot(
 
       autosDiv.innerHTML += `
         <div class="card">
+
           <h2>${auto.marca} ${auto.modelo}</h2>
 
           <p>
@@ -56,6 +63,66 @@ onSnapshot(
           <p>🏁 Rendimiento: $5.000</p>
 
           <p>📂 ${auto.categoria}</p>
+
+        </div>
+      `;
+    });
+  }
+);
+
+
+// =======================
+// ACTIVOS
+// =======================
+
+onSnapshot(
+  collection(db, "activos"),
+  (snapshot) => {
+
+    activosDiv.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+
+      const auto = doc.data();
+
+      activosDiv.innerHTML += `
+        <div class="card">
+
+          <h2>${auto.marca} ${auto.modelo}</h2>
+
+          <p>📄 Matrícula: ${auto.matricula}</p>
+
+          <p>
+            💰 Compra:
+            <span class="precio">
+              $${auto.precioCompra.toLocaleString()}
+            </span>
+          </p>
+
+          <p>
+            💵 Venta:
+            <span class="precio">
+              $${auto.precioVenta.toLocaleString()}
+            </span>
+          </p>
+
+          <p>
+            ${auto.fullTunning ? "✅ Full Tunning" : "❌ Sin Full Tunning"}
+          </p>
+
+          <p>
+            ${auto.motor ? "⚙️ Motor" : ""}
+            ${auto.frenos ? " ⚙️ Frenos" : ""}
+            ${auto.transmision ? " ⚙️ Transmisión" : ""}
+            ${auto.suspension ? " ⚙️ Suspensión" : ""}
+          </p>
+
+          <p>
+            ${auto.blindaje ? "🛡️ Blindaje" : "❌ Sin Blindaje"}
+          </p>ñ
+
+          <p>🟢 ${auto.estado}</p>
+
         </div>
       `;
     });
