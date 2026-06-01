@@ -208,7 +208,31 @@ onSnapshot(
             : "❌ Sin Blindaje"}
         </p>
 
-        <p>🟢 ${auto.estado}</p>
+      <p>
+        ${auto.estado === "Reservado"
+          ? "🟡 Reservado"
+          : "🟢 Disponible"}
+      </p>
+
+      <div style="margin-top:15px;">
+
+        <button
+          onclick="cambiarEstado('${doc.id}','${auto.estado}')"
+        >
+          ${
+            auto.estado === "Reservado"
+            ? "🟢 Liberar"
+            : "🟡 Reservar"
+          }
+        </button>
+
+        <button
+          onclick="eliminarVehiculo('${doc.id}')"
+        >
+          🗑️ Eliminar
+        </button>
+
+      </div>
 
       </div>
       `;
@@ -458,3 +482,40 @@ guardarVehiculo.addEventListener(
 
   }
 );
+
+window.cambiarEstado = async (
+  id,
+  estadoActual
+) => {
+
+  const nuevoEstado =
+  estadoActual === "Reservado"
+    ? "Disponible"
+    : "Reservado";
+
+  await updateDoc(
+    doc(db, "activos", id),
+    {
+      estado: nuevoEstado
+    }
+  );
+
+};
+
+window.eliminarVehiculo = async (
+  id
+) => {
+
+  const confirmar =
+  confirm(
+    "¿Eliminar vehículo?"
+  );
+
+  if(!confirmar)
+    return;
+
+  await deleteDoc(
+    doc(db, "activos", id)
+  );
+
+};
