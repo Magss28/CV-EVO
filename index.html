@@ -10,17 +10,30 @@
 
     <h1>🚗 Evo Motors</h1>
 
+    <div class="tabs">
+        <button id="btnCatalogo">🚗 Catálogo</button>
+        <button id="btnActivos">📦 Activos</button>
+    </div>
+
     <input
         type="text"
         id="buscador"
         placeholder="Buscar vehículo..."
     >
 
-    <h2>🚗 Catálogo</h2>
-    <div id="autos"></div>
+    <div id="catalogoSection">
+        <div id="autos"></div>
+    </div>
 
-    <h2>📦 Activos</h2>
-    <div id="activos"></div>
+    <div id="activosSection">
+
+        <button id="btnAgregar" class="agregarBtn">
+            ➕ Agregar Vehículo
+        </button>
+
+        <div id="activos"></div>
+
+    </div>
 
     <script type="module" src="app.js"></script>
 

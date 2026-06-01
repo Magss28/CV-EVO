@@ -21,10 +21,34 @@ const db = getFirestore(app);
 const autosDiv = document.getElementById("autos");
 const activosDiv = document.getElementById("activos");
 
+const catalogoSection =
+document.getElementById("catalogoSection");
 
-// =======================
+const activosSection =
+document.getElementById("activosSection");
+
+document
+.getElementById("btnCatalogo")
+.addEventListener("click", () => {
+
+  catalogoSection.style.display = "block";
+  activosSection.style.display = "none";
+
+});
+
+document
+.getElementById("btnActivos")
+.addEventListener("click", () => {
+
+  catalogoSection.style.display = "none";
+  activosSection.style.display = "block";
+
+});
+
+
+// ======================
 // CATALOGO
-// =======================
+// ======================
 
 onSnapshot(
   collection(db, "catalogo"),
@@ -37,49 +61,47 @@ onSnapshot(
       const auto = doc.data();
 
       const precioMaxCompra =
-        auto.precioConce * 0.5;
+      auto.precioConce * 0.5;
 
       autosDiv.innerHTML += `
-        <div class="card">
+      <div class="card">
 
-          <h2>${auto.marca} ${auto.modelo}</h2>
+        <h2>${auto.marca} ${auto.modelo}</h2>
 
-          <p>
-            Precio Conce:
-            <span class="precio">
-              $${auto.precioConce.toLocaleString()}
-            </span>
-          </p>
+        <p>
+          Precio Conce:
+          <span class="precio">
+            $${auto.precioConce.toLocaleString()}
+          </span>
+        </p>
 
-          <p>
-            Precio Máx Compra:
-            <span class="precio">
-              $${precioMaxCompra.toLocaleString()}
-            </span>
-          </p>
+        <p>
+          Precio Máx Compra:
+          <span class="precio">
+            $${precioMaxCompra.toLocaleString()}
+          </span>
+        </p>
 
-          <p>⚙️ Full Tunning: $55.000</p>
+        <p>⚙️ Full Tunning: $55.000</p>
 
-          <p>🏁 Rendimiento: $5.000</p>
+        <p>🏁 Rendimiento: $5.000</p>
 
-          <p>📂 ${auto.categoria}</p>
+        <p>📂 ${auto.categoria}</p>
 
-        </div>
+      </div>
       `;
     });
   }
 );
 
 
-// =======================
+// ======================
 // ACTIVOS
-// =======================
+// ======================
 
 onSnapshot(
   collection(db, "activos"),
   (snapshot) => {
-
-    console.log("ACTIVOS:", snapshot.size);
 
     activosDiv.innerHTML = "";
 
@@ -88,45 +110,64 @@ onSnapshot(
       const auto = doc.data();
 
       activosDiv.innerHTML += `
-        <div class="card">
+      <div class="card">
 
-          <h2>${auto.marca} ${auto.modelo}</h2>
+        <h2>${auto.marca} ${auto.modelo}</h2>
 
-          <p>📄 Matrícula: ${auto.matricula}</p>
+        <p>📄 Matrícula: ${auto.matricula}</p>
 
-          <p>
-            💰 Compra:
-            <span class="precio">
-              $${auto.precioCompra.toLocaleString()}
-            </span>
-          </p>
+        <p>
+          💰 Compra:
+          <span class="precio">
+            $${auto.precioCompra.toLocaleString()}
+          </span>
+        </p>
 
-          <p>
-            💵 Venta:
-            <span class="precio">
-              $${auto.precioVenta.toLocaleString()}
-            </span>
-          </p>
+        <p>
+          💵 Venta:
+          <span class="precio">
+            $${auto.precioVenta.toLocaleString()}
+          </span>
+        </p>
 
-          <p>
-            ${auto.fullTunning ? "✅ Full Tunning" : "❌ Sin Full Tunning"}
-          </p>
+        <p>
+          ${auto.fullTunning
+            ? "✅ Full Tunning"
+            : "❌ Sin Full Tunning"}
+        </p>
 
-          <p>
-            ${auto.motor ? "⚙️ Motor" : ""}
-            ${auto.frenos ? " ⚙️ Frenos" : ""}
-            ${auto.transmision ? " ⚙️ Transmisión" : ""}
-            ${auto.suspension ? " ⚙️ Suspensión" : ""}
-          </p>
+        <p>
+          ${auto.motor ? "⚙️ Motor" : ""}
+          ${auto.frenos ? " ⚙️ Frenos" : ""}
+          ${auto.transmision ? " ⚙️ Transmisión" : ""}
+          ${auto.suspension ? " ⚙️ Suspensión" : ""}
+        </p>
 
-          <p>
-            ${auto.blindaje ? "🛡️ Blindaje" : "❌ Sin Blindaje"}
-          </p>
+        <p>
+          ${auto.blindaje
+            ? "🛡️ Blindaje"
+            : "❌ Sin Blindaje"}
+        </p>
 
-          <p>🟢 ${auto.estado}</p>
+        <p>🟢 ${auto.estado}</p>
 
-        </div>
+      </div>
       `;
     });
   }
 );
+
+
+// ======================
+// BOTON AGREGAR
+// ======================
+
+document
+.getElementById("btnAgregar")
+.addEventListener("click", () => {
+
+  alert(
+    "Próximo paso: formulario para agregar vehículos."
+  );
+
+});
