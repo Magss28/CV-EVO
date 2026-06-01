@@ -165,9 +165,27 @@ onSnapshot(
 
         <p>📂 ${auto.categoria}</p>
 
-      </div>
-      `;
-    });
+        <p>
+          ${
+            auto.activo === false
+            ? "🔴 No Disponible"
+            : "🟢 Disponible"
+          }
+        </p>
+
+        <button
+          onclick="cambiarDisponibilidadCatalogo('${doc.id}', ${auto.activo === false})"
+        >
+          ${
+            auto.activo === false
+            ? "🟢 Habilitar"
+            : "🔴 Deshabilitar"
+          }
+        </button>
+
+              </div>
+              `;
+            });
 
   }
 );
@@ -620,6 +638,22 @@ window.venderVehiculo = async (
 
   await deleteDoc(
     referencia
+  );
+
+};
+
+window.cambiarDisponibilidadCatalogo =
+async (
+  id,
+  estabaDeshabilitado
+) => {
+
+  await updateDoc(
+    doc(db, "catalogo", id),
+    {
+      activo:
+      estabaDeshabilitado
+    }
   );
 
 };
