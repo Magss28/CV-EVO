@@ -11,6 +11,8 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
+import { motos } from "./datos/motos.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAAuz4yARRxt4V3vugwoFaOZRZlSoY7I5g",
   authDomain: "compra-y-venta-7ad1e.firebaseapp.com",
@@ -91,6 +93,9 @@ document.getElementById("precioCatalogo");
 
 const categoriaCatalogo =
 document.getElementById("categoriaCatalogo");
+
+const importarMotos =
+document.getElementById("importarMotos");
 
 buscador.addEventListener(
   "input",
@@ -813,6 +818,26 @@ guardarCatalogo.addEventListener(
 
     alert(
       "Vehículo agregado correctamente"
+    );
+
+  }
+);
+
+importarMotos.addEventListener(
+  "click",
+  async () => {
+
+    for(const moto of motos){
+
+      await addDoc(
+        collection(db, "catalogo"),
+        moto
+      );
+
+    }
+
+    alert(
+      "Motos importadas correctamente"
     );
 
   }
