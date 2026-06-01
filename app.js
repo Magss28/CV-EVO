@@ -119,7 +119,7 @@ onSnapshot(
 
           <p>
             ${auto.blindaje ? "🛡️ Blindaje" : "❌ Sin Blindaje"}
-          </p>ñ
+          </p>
 
           <p>🟢 ${auto.estado}</p>
 
