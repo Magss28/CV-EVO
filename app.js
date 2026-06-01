@@ -79,6 +79,8 @@ onSnapshot(
   collection(db, "activos"),
   (snapshot) => {
 
+    console.log("ACTIVOS:", snapshot.size);
+
     activosDiv.innerHTML = "";
 
     snapshot.forEach((doc) => {
