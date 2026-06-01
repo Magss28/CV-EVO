@@ -13,6 +13,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 import { motos } from "./datos/motos.js";
+import { clasicos } from "./datos/clasicos.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAuz4yARRxt4V3vugwoFaOZRZlSoY7I5g",
@@ -95,8 +96,12 @@ document.getElementById("precioCatalogo");
 const categoriaCatalogo =
 document.getElementById("categoriaCatalogo");
 
-const importarMotos =
+//para eliminar dsp 
+const importarMotos = 
 document.getElementById("importarMotos");
+
+const importarClasicos =
+document.getElementById("importarClasicos");
 
 buscador.addEventListener(
   "input",
@@ -823,7 +828,8 @@ guardarCatalogo.addEventListener(
 
   }
 );
-
+ 
+//ocultar
 importarMotos.addEventListener(
   "click",
   async () => {
@@ -848,6 +854,36 @@ importarMotos.addEventListener(
 
     alert(
       "Motos importadas correctamente"
+    );
+
+  }
+);
+
+
+importarClasicos.addEventListener(
+  "click",
+  async () => {
+
+    for(const auto of clasicos){
+
+      const idVehiculo =
+      `${auto.marca}-${auto.modelo}`
+      .toLowerCase()
+      .replaceAll(" ", "-");
+
+      await setDoc(
+        doc(
+          db,
+          "catalogo",
+          idVehiculo
+        ),
+        auto
+      );
+
+    }
+
+    alert(
+      "Clásicos importados correctamente"
     );
 
   }
