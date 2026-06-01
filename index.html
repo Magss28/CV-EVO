@@ -22,9 +22,71 @@
         placeholder="Buscar vehículo..."
     >
 
+    <!-- CATALOGO -->
+
     <div id="catalogoSection">
+
+        <button
+            id="btnAgregarCatalogo"
+            class="agregarBtn"
+        >
+            ➕ Agregar Vehículo al Catálogo
+        </button>
+
+        <div
+            id="formularioCatalogo"
+            style="display:none;"
+        >
+
+            <div class="card">
+
+                <h2>Nuevo Vehículo</h2>
+
+                <input
+                    type="text"
+                    id="marcaCatalogo"
+                    placeholder="Marca"
+                >
+
+                <br><br>
+
+                <input
+                    type="text"
+                    id="modeloCatalogo"
+                    placeholder="Modelo"
+                >
+
+                <br><br>
+
+                <input
+                    type="number"
+                    id="precioCatalogo"
+                    placeholder="Precio Conce"
+                >
+
+                <br><br>
+
+                <input
+                    type="text"
+                    id="categoriaCatalogo"
+                    placeholder="Categoría"
+                >
+
+                <br><br>
+
+                <button id="guardarCatalogo">
+                    Guardar Vehículo
+                </button>
+
+            </div>
+
+        </div>
+
         <div id="autos"></div>
+
     </div>
+
+    <!-- ACTIVOS -->
 
     <div id="activosSection">
 
@@ -118,16 +180,17 @@
 
     </div>
 
-    <script type="module" src="app.js"></script>
-
+    <!-- VENDIDOS -->
 
     <div id="vendidosSection">
 
-    <h2>💰 Historial de Ventas</h2>
+        <h2>💰 Historial de Ventas</h2>
 
-    <div id="vendidos"></div>
+        <div id="vendidos"></div>
 
-</div>
+    </div>
+
+    <script type="module" src="app.js"></script>
 
 </body>
 </html>

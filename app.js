@@ -20,7 +20,6 @@ const firebaseConfig = {
   appId: "1:132331919872:web:6898c5f7b2e312497856e5"
 };
 
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -72,6 +71,27 @@ document.getElementById("vendidosSection");
 const buscador =
 document.getElementById("buscador");
 
+const btnAgregarCatalogo =
+document.getElementById("btnAgregarCatalogo");
+
+const formularioCatalogo =
+document.getElementById("formularioCatalogo");
+
+const guardarCatalogo =
+document.getElementById("guardarCatalogo");
+
+const marcaCatalogo =
+document.getElementById("marcaCatalogo");
+
+const modeloCatalogo =
+document.getElementById("modeloCatalogo");
+
+const precioCatalogo =
+document.getElementById("precioCatalogo");
+
+const categoriaCatalogo =
+document.getElementById("categoriaCatalogo");
+
 buscador.addEventListener(
   "input",
   () => {
@@ -99,9 +119,6 @@ buscador.addEventListener(
 
   }
 );
-
-
-
 
 let catalogoAutos = {};
 
@@ -134,6 +151,27 @@ document
   vendidosSection.style.display = "block";
 
 });
+
+btnAgregarCatalogo.addEventListener(
+  "click",
+  () => {
+
+    if(
+      formularioCatalogo.style.display === "none"
+    ){
+
+      formularioCatalogo.style.display =
+      "block";
+
+    }else{
+
+      formularioCatalogo.style.display =
+      "none";
+
+    }
+
+  }
+);
 
 
 // ======================
@@ -727,3 +765,55 @@ async (
   );
 
 };
+
+guardarCatalogo.addEventListener(
+  "click",
+  async () => {
+
+    if(
+      !marcaCatalogo.value ||
+      !modeloCatalogo.value ||
+      !precioCatalogo.value
+    ){
+      alert(
+        "Completá todos los campos"
+      );
+      return;
+    }
+
+    await addDoc(
+      collection(db, "catalogo"),
+      {
+        marca:
+        marcaCatalogo.value,
+
+        modelo:
+        modeloCatalogo.value,
+
+        precioConce:
+        Number(
+          precioCatalogo.value
+        ),
+
+        categoria:
+        categoriaCatalogo.value || "Sin categoría",
+
+        activo:
+        true
+      }
+    );
+
+    marcaCatalogo.value = "";
+    modeloCatalogo.value = "";
+    precioCatalogo.value = "";
+    categoriaCatalogo.value = "";
+
+    formularioCatalogo.style.display =
+    "none";
+
+    alert(
+      "Vehículo agregado correctamente"
+    );
+
+  }
+);
