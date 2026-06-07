@@ -68,6 +68,18 @@ document.getElementById("blindaje");
 const matricula =
 document.getElementById("matricula");
 
+const precioAutomatico =
+document.getElementById("precioAutomatico");
+
+const precioManual =
+document.getElementById("precioManual");
+
+const precioManualInput =
+document.getElementById("precioManualInput");
+
+const precioVentaInput =
+document.getElementById("precioVentaInput");
+
 const guardarVehiculo =
 document.getElementById("guardarVehiculo");
 
@@ -557,12 +569,25 @@ function actualizarCosto() {
   const auto =
   catalogoAutos[idVehiculo];
 
-  let total =
-  auto.precioConce * 0.5;
+  let compraBase;
+
+  if(precioManual.checked){
+
+    compraBase =
+    Number(precioManualInput.value) || 0;
+
+  }else{
+
+    compraBase =
+    auto.precioConce * 0.5;
+
+  }
+
+  let total = compraBase;
 
   let html = `
     Compra Base:
-    $${(auto.precioConce * 0.5).toLocaleString()}
+    $${compraBase.toLocaleString()}
   `;
 
   if(fullTunning.checked){
@@ -577,11 +602,15 @@ function actualizarCosto() {
 
     total += 5000;
 
+    html += "<br>Motor: $5.000";
+
   }
 
   if(frenos.checked){
 
     total += 5000;
+
+    html += "<br>Frenos: $5.000";
 
   }
 
@@ -589,17 +618,23 @@ function actualizarCosto() {
 
     total += 5000;
 
+    html += "<br>Transmisión: $5.000";
+
   }
 
   if(suspension.checked){
 
     total += 5000;
 
+    html += "<br>Suspensión: $5.000";
+
   }
 
   if(blindaje.checked){
 
     total += 5000;
+
+    html += "<br>Blindaje: $5.000";
 
   }
 
@@ -650,6 +685,45 @@ blindaje.addEventListener(
   actualizarCosto
 );
 
+precioManualInput.addEventListener(
+  "input",
+  actualizarCosto
+);
+
+precioAutomatico.addEventListener(
+  "change",
+  actualizarCosto
+);
+
+precioManual.addEventListener(
+  "change",
+  actualizarCosto
+);
+
+precioManual.addEventListener(
+  "change",
+  () => {
+
+    precioManualInput.style.display =
+    "block";
+
+    actualizarCosto();
+
+  }
+);
+
+precioAutomatico.addEventListener(
+  "change",
+  () => {
+
+    precioManualInput.style.display =
+    "none";
+
+    actualizarCosto();
+
+  }
+);
+
 // ======================
 // GUARDAR VEHICULO
 // ======================
@@ -678,8 +752,19 @@ guardarVehiculo.addEventListener(
     const auto =
     catalogoAutos[idVehiculo];
 
-    let precioCompra =
-    auto.precioConce * 0.5;
+    let precioCompra;
+
+    if(precioManual.checked){
+
+      precioCompra =
+      Number(precioManualInput.value) || 0;
+
+    }else{
+
+      precioCompra =
+      auto.precioConce * 0.5;
+
+    }
 
     if(fullTunning.checked)
       precioCompra += 55000;
@@ -712,7 +797,8 @@ guardarVehiculo.addEventListener(
         precioCompra,
 
         precioVenta:
-        precioCompra,
+        Number(precioVentaInput.value)
+        || precioCompra,
 
         fullTunning:
         fullTunning.checked,
@@ -742,6 +828,8 @@ guardarVehiculo.addEventListener(
     );
 
     matricula.value = "";
+    precioManualInput.value = "";
+    precioVentaInput.value = "";
 
     fullTunning.checked = false;
     motor.checked = false;
