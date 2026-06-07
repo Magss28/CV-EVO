@@ -18,6 +18,7 @@ import { motos } from "./datos/motos.js";
 import { clasicos } from "./datos/clasicos.js";
 import { deportivos } from "./datos/deportivos.js";
 import { superdeportivos } from "./datos/superdeportivos.js";
+import { suv } from "./datos/suv.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAuz4yARRxt4V3vugwoFaOZRZlSoY7I5g",
@@ -112,6 +113,9 @@ document.getElementById("importarDeportivos");
 
 const importarSuperdeportivos =
 document.getElementById("importarSuperdeportivos");
+
+const importarSUV =
+document.getElementById("importarSUV");
 
 buscador.addEventListener(
   "input",
@@ -946,6 +950,35 @@ importarSuperdeportivos.addEventListener(
 
     alert(
       "Superdeportivos importados correctamente"
+    );
+
+  }
+);
+
+importarSUV.addEventListener(
+  "click",
+  async () => {
+
+    for(const auto of suv){
+
+      const idVehiculo =
+      `${auto.marca}-${auto.modelo}`
+      .toLowerCase()
+      .replaceAll(" ", "-");
+
+      await setDoc(
+        doc(
+          db,
+          "catalogo",
+          idVehiculo
+        ),
+        auto
+      );
+
+    }
+
+    alert(
+      "SUV importadas correctamente"
     );
 
   }
