@@ -77,6 +77,12 @@ document.getElementById("vendidos");
 const vendidosSection =
 document.getElementById("vendidosSection");
 
+const transferenciasSection =
+document.getElementById("transferenciasSection");
+
+const transferenciasDiv =
+document.getElementById("transferencias");
+
 const buscador =
 document.getElementById("buscador");
 
@@ -116,6 +122,8 @@ document.getElementById("importarSuperdeportivos");
 
 const importarSUV =
 document.getElementById("importarSUV");
+
+
 
 buscador.addEventListener(
   "input",
@@ -174,6 +182,17 @@ document
   catalogoSection.style.display = "none";
   activosSection.style.display = "none";
   vendidosSection.style.display = "block";
+
+});
+
+document
+.getElementById("btnTransferencias")
+.addEventListener("click", () => {
+
+  catalogoSection.style.display = "none";
+  activosSection.style.display = "none";
+  vendidosSection.style.display = "none";
+  transferenciasSection.style.display = "block";
 
 });
 
@@ -289,6 +308,66 @@ onSnapshot(
               </div>
               `;
             });
+
+  }
+);
+
+// ======================
+// TRANSFERENCIAS
+// ======================
+
+onSnapshot(
+  collection(db, "catalogo"),
+  (snapshot) => {
+
+    transferenciasDiv.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+
+      const auto = doc.data();
+
+      const compraTransferencia =
+      auto.precioConce * 0.10;
+
+      const ventaTransferencia =
+      auto.precioConce * 0.30;
+
+      transferenciasDiv.innerHTML += `
+      <div class="card">
+
+        <h2>
+          ${auto.marca}
+          ${auto.modelo}
+        </h2>
+
+        <p>
+          📂 ${auto.categoria}
+        </p>
+
+        <p>
+          💰 Precio Conce:
+          <span class="precio">
+            $${auto.precioConce.toLocaleString()}
+          </span>
+        </p>
+
+        <p>
+          📄 Compra Transferencia:
+          <span class="precio">
+            $${compraTransferencia.toLocaleString()}
+          </span>
+        </p>
+
+        <p>
+          📄 Venta Transferencia:
+          <span class="precio">
+            $${ventaTransferencia.toLocaleString()}
+          </span>
+        </p>
+
+      </div>
+      `;
+    });
 
   }
 );
