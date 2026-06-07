@@ -9,7 +9,8 @@ import {
   setDoc,
   updateDoc,
   deleteDoc,
-  getDoc
+  getDoc,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 /*ocultar importaciones
@@ -122,7 +123,8 @@ document.getElementById("importarSuperdeportivos");
 const importarSUV =
 document.getElementById("importarSUV"); */  
 
-
+const limpiarVendidos =
+document.getElementById("limpiarVendidos");
 
 buscador.addEventListener(
   "input",
@@ -493,8 +495,14 @@ onSnapshot(
         </p>
 
         <p>
-          📅 ${auto.fechaVenta}
-        </p>
+        📅 ${auto.fechaVenta}
+      </p>
+
+      <button
+        onclick="eliminarVenta('${doc.id}')"
+      >
+        🗑️ Eliminar Venta
+      </button>
 
       </div>
       `;
@@ -1062,3 +1070,57 @@ importarSUV.addEventListener(
 
   }
 );*/
+
+window.eliminarVenta = async (
+  id
+) => {
+
+  const confirmar =
+  confirm(
+    "¿Eliminar esta venta?"
+  );
+
+  if(!confirmar)
+    return;
+
+  await deleteDoc(
+    doc(db, "vendidos", id)
+  );
+
+};
+
+limpiarVendidos.addEventListener(
+  "click",
+  async () => {
+
+    const confirmar =
+    confirm(
+      "¿Eliminar TODO el historial?"
+    );
+
+    if(!confirmar)
+      return;
+
+    const snapshot =
+    await getDocs(
+      collection(db, "vendidos")
+    );
+
+    for(const documento of snapshot.docs){
+
+      await deleteDoc(
+        doc(
+          db,
+          "vendidos",
+          documento.id
+        )
+      );
+
+    }
+
+    alert(
+      "Historial eliminado"
+    );
+
+  }
+);
