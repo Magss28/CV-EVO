@@ -1124,3 +1124,12 @@ limpiarVendidos.addEventListener(
 
   }
 );
+
+setTimeout(() => {
+
+  new TomSelect("#selectVehiculo", {
+    create: false,
+    maxOptions: 500
+  });
+
+}, 1000);
