@@ -97,12 +97,15 @@ document.getElementById("precioCatalogo");
 const categoriaCatalogo =
 document.getElementById("categoriaCatalogo");
 
-//para eliminar dsp 
+//para eliminar dsp IMPORTACIONES
 const importarMotos = 
 document.getElementById("importarMotos");
 
 const importarClasicos =
 document.getElementById("importarClasicos");
+
+const importarDeportivos =
+document.getElementById("importarDeportivos");
 
 buscador.addEventListener(
   "input",
