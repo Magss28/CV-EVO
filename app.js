@@ -12,13 +12,12 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-//ocultar importaciones
-
+/*ocultar importaciones
 import { motos } from "./datos/motos.js";
 import { clasicos } from "./datos/clasicos.js";
 import { deportivos } from "./datos/deportivos.js";
 import { superdeportivos } from "./datos/superdeportivos.js";
-import { suv } from "./datos/suv.js";
+import { suv } from "./datos/suv.js"; */
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAuz4yARRxt4V3vugwoFaOZRZlSoY7I5g",
@@ -107,7 +106,7 @@ document.getElementById("precioCatalogo");
 const categoriaCatalogo =
 document.getElementById("categoriaCatalogo");
 
-//para eliminar dsp IMPORTACIONES
+/* ocultar botones de importacion 
 const importarMotos = 
 document.getElementById("importarMotos");
 
@@ -121,7 +120,7 @@ const importarSuperdeportivos =
 document.getElementById("importarSuperdeportivos");
 
 const importarSUV =
-document.getElementById("importarSUV");
+document.getElementById("importarSUV"); */  
 
 
 
@@ -375,6 +374,7 @@ onSnapshot(
 // ======================
 // ACTIVOS
 // ======================
+
 onSnapshot(
   collection(db, "activos"),
   (snapshot) => {
@@ -917,7 +917,7 @@ guardarCatalogo.addEventListener(
   }
 );
  
-//ocultar
+/* ocultar importaciones 
 importarMotos.addEventListener(
   "click",
   async () => {
@@ -1061,4 +1061,4 @@ importarSUV.addEventListener(
     );
 
   }
-);
+);*/
