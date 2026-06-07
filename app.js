@@ -14,6 +14,7 @@ import {
 
 import { motos } from "./datos/motos.js";
 import { clasicos } from "./datos/clasicos.js";
+import { deportivos } from "./datos/deportivos.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAuz4yARRxt4V3vugwoFaOZRZlSoY7I5g",

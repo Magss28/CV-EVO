@@ -22,7 +22,7 @@ export const clasicos = [
     precioConce: 982000,
     categoria: "Clasicos",
     activo: true
-  },
+  },    
 
   {
     marca: "Declasse",
