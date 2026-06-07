@@ -1,3 +1,7 @@
+*{
+    box-sizing:border-box;
+}
+
 body{
     background:#121212;
     color:white;
@@ -58,12 +62,14 @@ h1{
 }
 
 select,
-input[type="text"]{
+input[type="text"],
+input[type="number"]{
     width:100%;
     padding:10px;
     border:none;
     border-radius:8px;
     margin-top:5px;
+    box-sizing:border-box;
 }
 
 #guardarVehiculo{
