@@ -87,3 +87,12 @@ input[type="text"]{
 #transferenciasSection{
     display:none;
 }
+
+.cerrarBtn{
+    float:right;
+    background:none;
+    border:none;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+}

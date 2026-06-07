@@ -521,6 +521,12 @@ onSnapshot(
 const formularioActivo =
 document.getElementById("formularioActivo");
 
+const cerrarActivo =
+document.getElementById("cerrarActivo");
+
+const cerrarCatalogo =
+document.getElementById("cerrarCatalogo");
+
 document
 .getElementById("btnAgregar")
 .addEventListener("click", () => {
@@ -536,6 +542,26 @@ document
   }
 
 });
+
+cerrarActivo.addEventListener(
+  "click",
+  () => {
+
+    formularioActivo.style.display =
+    "none";
+
+  }
+);
+
+cerrarCatalogo.addEventListener(
+  "click",
+  () => {
+
+    formularioCatalogo.style.display =
+    "none";
+
+  }
+);
 
 // ======================
 // CALCULOS
