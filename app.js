@@ -12,9 +12,12 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
+//ocultar importaciones
+
 import { motos } from "./datos/motos.js";
 import { clasicos } from "./datos/clasicos.js";
 import { deportivos } from "./datos/deportivos.js";
+import { superdeportivos } from "./datos/superdeportivos.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAuz4yARRxt4V3vugwoFaOZRZlSoY7I5g",
@@ -107,6 +110,9 @@ document.getElementById("importarClasicos");
 const importarDeportivos =
 document.getElementById("importarDeportivos");
 
+const importarSuperdeportivos =
+document.getElementById("importarSuperdeportivos");
+
 buscador.addEventListener(
   "input",
   () => {
@@ -187,7 +193,6 @@ btnAgregarCatalogo.addEventListener(
 
   }
 );
-
 
 // ======================
 // CATALOGO
@@ -284,11 +289,9 @@ onSnapshot(
   }
 );
 
-
 // ======================
 // ACTIVOS
 // ======================
-
 onSnapshot(
   collection(db, "activos"),
   (snapshot) => {
@@ -439,7 +442,6 @@ document
   }
 
 });
-
 
 // ======================
 // CALCULOS
@@ -696,7 +698,6 @@ window.eliminarVehiculo = async (
 
 };
 
-
 window.venderVehiculo = async (
   id
 ) => {
@@ -863,7 +864,6 @@ importarMotos.addEventListener(
   }
 );
 
-
 importarClasicos.addEventListener(
   "click",
   async () => {
@@ -917,6 +917,35 @@ importarDeportivos.addEventListener(
 
     alert(
       "Deportivos importados correctamente"
+    );
+
+  }
+);
+
+importarSuperdeportivos.addEventListener(
+  "click",
+  async () => {
+
+    for(const auto of superdeportivos){
+
+      const idVehiculo =
+      `${auto.marca}-${auto.modelo}`
+      .toLowerCase()
+      .replaceAll(" ", "-");
+
+      await setDoc(
+        doc(
+          db,
+          "catalogo",
+          idVehiculo
+        ),
+        auto
+      );
+
+    }
+
+    alert(
+      "Superdeportivos importados correctamente"
     );
 
   }
