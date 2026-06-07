@@ -892,3 +892,32 @@ importarClasicos.addEventListener(
 
   }
 );
+
+importarDeportivos.addEventListener(
+  "click",
+  async () => {
+
+    for(const auto of deportivos){
+
+      const idVehiculo =
+      `${auto.marca}-${auto.modelo}`
+      .toLowerCase()
+      .replaceAll(" ", "-");
+
+      await setDoc(
+        doc(
+          db,
+          "catalogo",
+          idVehiculo
+        ),
+        auto
+      );
+
+    }
+
+    alert(
+      "Deportivos importados correctamente"
+    );
+
+  }
+);
