@@ -97,9 +97,3 @@ input[type="text"]{
     cursor:pointer;
 }
 
-input[type="number"]{
-    width:90%;
-    padding:10px;
-    border:none;
-    border-radius:8px;
-}
