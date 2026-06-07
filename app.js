@@ -163,6 +163,7 @@ document
 catalogoSection.style.display = "block";
 activosSection.style.display = "none";
 vendidosSection.style.display = "none";
+transferenciasSection.style.display = "none";
 
 });
 
@@ -173,6 +174,7 @@ document
 catalogoSection.style.display = "none";
 activosSection.style.display = "block";
 vendidosSection.style.display = "none";
+transferenciasSection.style.display = "none";
 
 });
 
@@ -183,6 +185,7 @@ document
   catalogoSection.style.display = "none";
   activosSection.style.display = "none";
   vendidosSection.style.display = "block";
+  transferenciasSection.style.display = "none";
 
 });
 
