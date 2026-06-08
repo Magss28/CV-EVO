@@ -462,9 +462,17 @@ onSnapshot(
         </p>
 
         <p>
-          ${auto.fullTunning
+          ${
+            auto.fullTunning
             ? "✅ Full Tunning"
-            : "❌ Sin Full Tunning"}
+            : "❌ Sin Full Tunning"
+          }
+
+          ${
+            auto.notaModificaciones
+            ? `<br><small>📝 ${auto.notaModificaciones}</small>`
+            : ""
+          }
         </p>
 
         <p>
