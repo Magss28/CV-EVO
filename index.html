@@ -158,6 +158,52 @@
 
                 <br><br>
 
+                <br><br>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="modoPrecio"
+                        value="automatico"
+                        checked
+                    >
+                    Precio Automático
+                </label>
+
+                <br>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="modoPrecio"
+                        value="manual"
+                    >
+                    Precio Manual
+                </label>
+
+                <div
+                    id="precioManualDiv"
+                    style="display:none;"
+                >
+
+                    <br>
+
+                    <input
+                        type="number"
+                        id="precioCompraManual"
+                        placeholder="Precio Compra"
+                    >
+
+                    <br><br>
+
+                    <input
+                        type="number"
+                        id="precioVentaManual"
+                        placeholder="Precio Venta"
+                    >
+
+                </div> <!-- Fin precio manual -->
+
                 <label>
                     <input type="checkbox" id="fullTunning">
                     Full Tunning
