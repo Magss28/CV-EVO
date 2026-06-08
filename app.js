@@ -478,7 +478,8 @@ onSnapshot(
         !auto.motor &&
         !auto.frenos &&
         !auto.transmision &&
-        !auto.suspension
+        !auto.suspension &&
+        !auto.blindaje
 
         ? "⚙️ Sin Rendimientos"
 
@@ -487,7 +488,8 @@ onSnapshot(
               auto.motor ? "Motor" : "",
               auto.frenos ? "Frenos" : "",
               auto.transmision ? "Transmisión" : "",
-              auto.suspension ? "Suspensión" : ""
+              auto.suspension ? "Suspensión" : "",
+              auto.blindaje ? "Blindaje" : ""
             ]
             .filter(Boolean)
             .join(" ")
@@ -499,7 +501,8 @@ onSnapshot(
       !auto.motor ||
       !auto.frenos ||
       !auto.transmision ||
-      !auto.suspension
+      !auto.suspension ||
+      !auto.blindaje
 
       ? `
       <small>
@@ -508,7 +511,8 @@ onSnapshot(
             !auto.motor ? "Motor" : "",
             !auto.frenos ? "Frenos" : "",
             !auto.transmision ? "Transmisión" : "",
-            !auto.suspension ? "Suspensión" : ""
+            !auto.suspension ? "Suspensión" : "",
+            !auto.blindaje ? "Blindaje" : ""
           ]
           .filter(Boolean)
           .join(", ")
@@ -517,14 +521,6 @@ onSnapshot(
       `
       : ""
     }
-
-    <p>
-      ${
-        auto.blindaje
-        ? "🛡️ Blindaje"
-        : ""
-      }
-    </p>
 
       <p>
         ${auto.estado === "Reservado"
