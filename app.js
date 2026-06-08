@@ -462,41 +462,69 @@ onSnapshot(
         </p>
 
         <p>
-          ${
-            auto.fullTunning
-            ? "✅ Full Tunning"
-            : "❌ Sin Full Tunning"
-          }
-
-          ${
+  ${
+        auto.fullTunning
+        ? `✅ Full Tunning${
             auto.notaModificaciones
-            ? `<br><small>📝 ${auto.notaModificaciones}</small>`
+            ? ` (${auto.notaModificaciones})`
             : ""
-          }
-        </p>
+          }`
+        : "❌ Sin Full Tunning"
+      }
+    </p>
 
-        <p>
-          ${auto.motor ? "⚙️ Motor" : ""}
-          ${auto.frenos ? " ⚙️ Frenos" : ""}
-          ${auto.transmision ? " ⚙️ Transmisión" : ""}
-          ${auto.suspension ? " ⚙️ Suspensión" : ""}
-        </p>
+    <p>
+      ${
+        !auto.motor &&
+        !auto.frenos &&
+        !auto.transmision &&
+        !auto.suspension
 
-        <p>
-          ${auto.blindaje
-            ? "🛡️ Blindaje"
-            : "❌ Sin Blindaje"}
-        </p>
+        ? "⚙️ Sin Rendimientos"
 
-        ${
-        auto.notaModificaciones
-        ? `
-        <p>
-          🛠️ ${auto.notaModificaciones}
-        </p>
-        `
+        : `⚙️ ${
+            [
+              auto.motor ? "Motor" : "",
+              auto.frenos ? "Frenos" : "",
+              auto.transmision ? "Transmisión" : "",
+              auto.suspension ? "Suspensión" : ""
+            ]
+            .filter(Boolean)
+            .join(" ")
+          }`
+      }
+    </p>
+
+    ${
+      !auto.motor ||
+      !auto.frenos ||
+      !auto.transmision ||
+      !auto.suspension
+
+      ? `
+      <small>
+        (No tiene ${
+          [
+            !auto.motor ? "Motor" : "",
+            !auto.frenos ? "Frenos" : "",
+            !auto.transmision ? "Transmisión" : "",
+            !auto.suspension ? "Suspensión" : ""
+          ]
+          .filter(Boolean)
+          .join(", ")
+        })
+      </small>
+      `
+      : ""
+    }
+
+    <p>
+      ${
+        auto.blindaje
+        ? "🛡️ Blindaje"
         : ""
       }
+    </p>
 
       <p>
         ${auto.estado === "Reservado"
