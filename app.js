@@ -65,6 +65,11 @@ document.getElementById("suspension");
 const blindaje =
 document.getElementById("blindaje");
 
+const notaModificaciones =
+document.getElementById(
+  "notaModificaciones"
+);
+
 const matricula =
 document.getElementById("matricula");
 
@@ -475,11 +480,31 @@ onSnapshot(
             : "❌ Sin Blindaje"}
         </p>
 
+        ${
+        auto.notaModificaciones
+        ? `
+        <p>
+          🛠️ ${auto.notaModificaciones}
+        </p>
+        `
+        : ""
+      }
+
       <p>
         ${auto.estado === "Reservado"
           ? "🟡 Reservado"
           : "🟢 Disponible"}
       </p>
+
+      ${
+      auto.notaReserva
+      ? `
+      <p>
+        👤 ${auto.notaReserva}
+      </p>
+      `
+      : ""
+    }
 
       <div style="margin-top:15px;">
 
@@ -870,6 +895,12 @@ guardarVehiculo.addEventListener(
         blindaje:
         blindaje.checked,
 
+        notaModificaciones:
+        notaModificaciones.value,
+
+        notaReserva:
+        "",
+
         estado:
         "Disponible"
       }
@@ -882,6 +913,7 @@ guardarVehiculo.addEventListener(
     matricula.value = "";
     precioCompraManual.value = "";
     precioVentaManual.value = "";
+    notaModificaciones.value = "";
 
     fullTunning.checked = false;
     motor.checked = false;
@@ -900,17 +932,32 @@ window.cambiarEstado = async (
   estadoActual
 ) => {
 
-  const nuevoEstado =
-  estadoActual === "Reservado"
-    ? "Disponible"
-    : "Reservado";
+  if(estadoActual !== "Reservado"){
 
-  await updateDoc(
-    doc(db, "activos", id),
-    {
-      estado: nuevoEstado
-    }
-  );
+    const nota =
+    prompt(
+      "¿Reservado para quién?"
+    );
+
+    await updateDoc(
+      doc(db, "activos", id),
+      {
+        estado: "Reservado",
+        notaReserva: nota || ""
+      }
+    );
+
+  }else{
+
+    await updateDoc(
+      doc(db, "activos", id),
+      {
+        estado: "Disponible",
+        notaReserva: ""
+      }
+    );
+
+  }
 
 };
 
