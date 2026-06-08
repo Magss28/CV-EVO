@@ -1,163 +1,189 @@
 export const deportivos = [
 
   {
-    marca: "WOW",
-    modelo: "Omnis",
+    marca: "Ocelot",
+    modelo: "Jugular",
+    precioConce: 345000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Progen",
+    modelo: "Itali GTO",
     precioConce: 380000,
     categoria: "Deportivos",
     activo: true
   },
 
   {
-    marca: "Obey",
-    modelo: "8F Drafter",
-    precioConce: 250000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Emperor",
-    modelo: "Vectre",
-    precioConce: 300000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Grotti",
-    modelo: "Carbonizzare",
-    precioConce: 250000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Lampadati",
-    modelo: "Komoda",
-    precioConce: 380000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Annis",
-    modelo: "Euros",
-    precioConce: 320000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Benefactor",
-    modelo: "Feltzer",
+    marca: "Ubermacht",
+    modelo: "Revolter",
     precioConce: 230000,
     categoria: "Deportivos",
     activo: true
   },
 
   {
-    marca: "Emperor",
-    modelo: "Sheavas",
-    precioConce: 480000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Annis",
-    modelo: "Elegy RH8",
-    precioConce: 260000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Ocelot",
-    modelo: "Lynx",
-    precioConce: 260000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Vapid",
-    modelo: "GB200",
-    precioConce: 280000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Annis",
-    modelo: "Elegy GT",
-    precioConce: 875000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
     marca: "Dinka",
-    modelo: "Jester",
-    precioConce: 250000,
+    modelo: "Jester Classic",
+    precioConce: 300000,
     categoria: "Deportivos",
     activo: true
   },
 
   {
-    marca: "Dewbauchee",
-    modelo: "Champion",
-    precioConce: 750000,
+    marca: "Annis",
+    modelo: "ZR350",
+    precioConce: 300000,
     categoria: "Deportivos",
     activo: true
   },
 
   {
-    marca: "Enus",
-    modelo: "Paragon",
-    precioConce: 320000,
+    marca: "Maibatsu",
+    modelo: "Penumbra FF",
+    precioConce: 200000,
     categoria: "Deportivos",
     activo: true
   },
 
   {
     marca: "Obey",
-    modelo: "10F",
-    precioConce: 330000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Annis",
-    modelo: "Elegy Retro Custom",
-    precioConce: 280000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Benefactor",
-    modelo: "Schlagen GT",
-    precioConce: 270000,
-    categoria: "Deportivos",
-    activo: true
-  },
-
-  {
-    marca: "Karin",
-    modelo: "Sultan RS",
-    precioConce: 350000,
+    modelo: "9F",
+    precioConce: 210000,
     categoria: "Deportivos",
     activo: true
   },
 
   {
     marca: "Vapid",
-    modelo: "Flash GT",
+    modelo: "Dominator GTX",
+    precioConce: 450000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Pfister",
+    modelo: "Comet SR",
+    precioConce: 280000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Karin",
+    modelo: "Sultan Custom",
+    precioConce: 325000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Dewbauchee",
+    modelo: "Massacro",
+    precioConce: 400000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Overflod",
+    modelo: "Imorgon",
+    precioConce: 280000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Pfister",
+    modelo: "Comet S2",
+    precioConce: 400000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Lampadati",
+    modelo: "Tropos Rallye",
+    precioConce: 280000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Ubermacht",
+    modelo: "Cypher",
+    precioConce: 400000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Pfister",
+    modelo: "Growler",
+    precioConce: 400000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Pfister",
+    modelo: "Comet Retro Custom",
+    precioConce: 280000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Obey",
+    modelo: "9F Cabrio",
+    precioConce: 220000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Karin",
+    modelo: "Calico GTF",
+    precioConce: 240000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Pfister",
+    modelo: "Neon",
+    precioConce: 350000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Ocelot",
+    modelo: "Locust",
+    precioConce: 280000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Lampadati",
+    modelo: "Furore GT",
+    precioConce: 280000,
+    categoria: "Deportivos",
+    activo: true
+  },
+
+  {
+    marca: "Dewbauchee",
+    modelo: "Seven-70",
     precioConce: 300000,
     categoria: "Deportivos",
     activo: true
-  }
+  },
 
 ];
+
+

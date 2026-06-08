@@ -16,9 +16,11 @@ import {
 /*ocultar importaciones
 import { motos } from "./datos/motos.js";
 import { clasicos } from "./datos/clasicos.js";
-import { deportivos } from "./datos/deportivos.js";
-import { superdeportivos } from "./datos/superdeportivos.js";
 import { suv } from "./datos/suv.js"; */
+
+import { superdeportivos } from "./datos/superdeportivos.js";
+import { deportivos } from "./datos/deportivos.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAuz4yARRxt4V3vugwoFaOZRZlSoY7I5g",
@@ -130,14 +132,14 @@ document.getElementById("importarMotos");
 const importarClasicos =
 document.getElementById("importarClasicos");
 
-const importarDeportivos =
-document.getElementById("importarDeportivos");
+const importarSUV =
+document.getElementById("importarSUV"); */  
 
 const importarSuperdeportivos =
 document.getElementById("importarSuperdeportivos");
 
-const importarSUV =
-document.getElementById("importarSUV"); */  
+const importarDeportivos =
+document.getElementById("importarDeportivos");
 
 const limpiarVendidos =
 document.getElementById("limpiarVendidos");
@@ -1204,7 +1206,7 @@ importarClasicos.addEventListener(
     );
 
   }
-);
+);*/
 
 importarDeportivos.addEventListener(
   "click",
@@ -1264,7 +1266,7 @@ importarSuperdeportivos.addEventListener(
   }
 );
 
-importarSUV.addEventListener(
+/*importarSUV.addEventListener(
   "click",
   async () => {
 
