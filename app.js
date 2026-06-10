@@ -10,9 +10,7 @@ import {
   updateDoc,
   deleteDoc,
   getDoc,
-  getDocs,
-  enableNetwork,    
-  disableNetwork      
+  getDocs
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 /*ocultar importaciones
@@ -1352,30 +1350,6 @@ limpiarVendidos.addEventListener(
   }
 );
 
-// =============================================
-// KEEPALIVE + RECONEXIÓN AL VOLVER A LA PESTAÑA
-// =============================================
-
-import {
-  enableNetwork,
-  disableNetwork
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-// Cuando la pestaña vuelve a ser visible, fuerza reconexión
-document.addEventListener("visibilitychange", async () => {
-  if (document.visibilityState === "visible") {
-    await disableNetwork(db);
-    await enableNetwork(db);
-  }
-});
-
-// Keepalive cada 4 minutos para mantener la conexión activa
-setInterval(async () => {
-  if (document.visibilityState === "visible") {
-    await disableNetwork(db);
-    await enableNetwork(db);
-  }
-}, 4 * 60 * 1000);
 
 setTimeout(() => {
 
