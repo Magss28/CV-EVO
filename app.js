@@ -450,6 +450,17 @@ onSnapshot(
 
         <p>📄 Matrícula: ${auto.matricula}</p>
 
+          ${
+            auto.notaModificaciones
+            ? `
+            <p>
+              📝 Observaciones:
+              ${auto.notaModificaciones}
+            </p>
+            `
+            : ""
+          }
+
         <p>
           💰 Compra:
           <span class="precio">
@@ -465,15 +476,12 @@ onSnapshot(
         </p>
 
         <p>
-  ${
-        auto.fullTunning
-        ? `✅ Full Tunning${
-            auto.notaModificaciones
-            ? ` (${auto.notaModificaciones})`
-            : ""
-          }`
-        : "❌ Sin Full Tunning"
-      }
+    ${
+      auto.fullTunning
+      ? "✅ Full Tunning"
+      : "❌ Sin Full Tunning"
+    }
+    
     </p>
 
     <p>
