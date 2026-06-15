@@ -50,8 +50,8 @@ document.getElementById("selectVehiculo");
 const calculos =
 document.getElementById("calculos");
 
-const fullTunning =
-document.getElementById("fullTunning");
+/*const fullTunning =
+document.getElementById("fullTunning");   */
 
 const motor =
 document.getElementById("motor");
@@ -67,6 +67,24 @@ document.getElementById("suspension");
 
 const blindaje =
 document.getElementById("blindaje");
+
+const turbo =
+document.getElementById("turbo");
+
+const motorV8 =
+document.getElementById("motorV8");
+
+const turboCharger =
+document.getElementById("turboCharger");
+
+const frenosCeramicos =
+document.getElementById("frenosCeramicos");
+
+const llantas =
+document.getElementById("llantas");
+
+const traccion =
+document.getElementById("traccion");
 
 const notaModificaciones =
 document.getElementById(
@@ -465,54 +483,47 @@ onSnapshot(
         </p>
 
         <p>
-    ${
-      auto.fullTunning
-      ? "✅ Full Tunning"
-      : "❌ Sin Full Tunning"
-    }
-
-    </p>
-
+    
     <p>
-      ${
-        !auto.motor &&
-        !auto.frenos &&
-        !auto.transmision &&
-        !auto.suspension &&
-        !auto.blindaje
+  ${
+    !auto.motorV8 &&
+    !auto.turboCharger &&
+    !auto.frenosCeramicos &&
+    !auto.llantas &&
+    !auto.traccion
 
-        ? "⚙️ Sin Rendimientos"
+    ? "⚙️ Sin Full Tunning"
 
-        : `⚙️ ${
-            [
-              auto.motor ? "Motor" : "",
-              auto.frenos ? "Frenos" : "",
-              auto.transmision ? "Transmisión" : "",
-              auto.suspension ? "Suspensión" : "",
-              auto.blindaje ? "Blindaje" : ""
-            ]
-            .filter(Boolean)
-            .join(" ")
-          }`
-      }
-    </p>
+    : `⚙️ ${
+        [
+          auto.motorV8 ? "Motor V8" : "",
+          auto.turboCharger ? "Turbo Charger" : "",
+          auto.frenosCeramicos ? "Frenos Cerámicos" : "",
+          auto.llantas ? "Llantas" : "",
+          auto.traccion ? "Tracción" : ""
+        ]
+        .filter(Boolean)
+        .join(" • ")
+      }`
+  }
+</p>
 
     ${
-      !auto.motor ||
-      !auto.frenos ||
-      !auto.transmision ||
-      !auto.suspension ||
-      !auto.blindaje
+      !auto.motorV8 ||
+      !auto.turboCharger ||
+      !auto.frenosCeramicos ||
+      !auto.llantas ||
+      !auto.traccion
 
       ? `
       <small>
         (No tiene ${
           [
-            !auto.motor ? "Motor" : "",
-            !auto.frenos ? "Frenos" : "",
-            !auto.transmision ? "Transmisión" : "",
-            !auto.suspension ? "Suspensión" : "",
-            !auto.blindaje ? "Blindaje" : ""
+            !auto.motorV8 ? "Motor V8" : "",
+            !auto.turboCharger ? "Turbo Charger" : "",
+            !auto.frenosCeramicos ? "Frenos Cerámicos" : "",
+            !auto.llantas ? "Llantas" : "",
+            !auto.traccion ? "Tracción" : ""
           ]
           .filter(Boolean)
           .join(", ")
@@ -520,7 +531,62 @@ onSnapshot(
       </small>
       `
       : ""
-    }
+    }    
+
+        </p>
+
+        <p>
+          ${
+            !auto.motor &&
+            !auto.frenos &&
+            !auto.turbo &&
+            !auto.transmision &&
+            !auto.suspension &&
+            !auto.blindaje
+
+            ? "⚙️ Sin Rendimientos"
+
+            : `⚙️ ${
+                [
+                  auto.motor ? "Motor" : "",
+                  auto.frenos ? "Frenos" : "",
+                  auto.turbo ? "Turbo" : "",
+                  auto.transmision ? "Transmisión" : "",
+                  auto.suspension ? "Suspensión" : "",
+                  auto.blindaje ? "Blindaje" : ""
+                ]
+                .filter(Boolean)
+                .join(" ")
+              }`
+          }
+        </p>
+
+        ${
+          !auto.motor ||
+          !auto.frenos ||
+          !auto.turbo ||
+          !auto.transmision ||
+          !auto.suspension ||
+          !auto.blindaje
+
+          ? `
+          <small>
+            (No tiene ${
+              [
+                !auto.motor ? "Motor" : "",
+                !auto.frenos ? "Frenos" : "",
+                !auto.turbo ? "Turbo" : "",
+                !auto.transmision ? "Transmisión" : "",
+                !auto.suspension ? "Suspensión" : "",
+                !auto.blindaje ? "Blindaje" : ""
+              ]
+              .filter(Boolean)
+              .join(", ")
+            })
+          </small>
+          `
+          : ""
+        }
 
     ${
             auto.notaModificaciones
@@ -722,15 +788,21 @@ function actualizarCosto() {
     $${(auto.precioConce * 0.5).toLocaleString()}
   `;
 
-  if(fullTunning.checked){
+  /*if(fullTunning.checked){
 
     total += 55000;
 
     html += "<br>Full Tunning: $55.000";
 
-  }
+  } */
 
   if(motor.checked){
+
+    total += 5000;
+
+  }
+
+  if(turbo.checked){
 
     total += 5000;
 
@@ -777,12 +849,17 @@ selectVehiculo.addEventListener(
   actualizarCosto
 );
 
-fullTunning.addEventListener(
+/*fullTunning.addEventListener(
+  "change",
+  actualizarCosto
+); */
+
+motor.addEventListener(
   "change",
   actualizarCosto
 );
 
-motor.addEventListener(
+turbo.addEventListener(
   "change",
   actualizarCosto
 );
@@ -887,8 +964,8 @@ guardarVehiculo.addEventListener(
         precioCompra =
         auto.precioConce * 0.5;
 
-        if(fullTunning.checked)
-          precioCompra += 55000;
+        /*if(fullTunning.checked)
+          precioCompra += 55000; */
 
         if(motor.checked)
           precioCompra += 5000;
@@ -925,11 +1002,26 @@ guardarVehiculo.addEventListener(
         precioVenta:
         precioVenta,
 
-        fullTunning:
-        fullTunning.checked,
+        motorV8:
+        motorV8.checked,
+
+        turboCharger:
+        turboCharger.checked,
+
+        frenosCeramicos:
+        frenosCeramicos.checked,
+
+        llantas:
+        llantas.checked,
+
+        traccion:
+        traccion.checked,
 
         motor:
         motor.checked,
+
+        turbo:
+        turbo.checked,
 
         frenos:
         frenos.checked,
@@ -963,12 +1055,19 @@ guardarVehiculo.addEventListener(
     precioVentaManual.value = "";
     notaModificaciones.value = "";
 
-    fullTunning.checked = false;
+    //fullTunning.checked = false;
     motor.checked = false;
     frenos.checked = false;
+    turbo.checked = false;
     transmision.checked = false;
     suspension.checked = false;
     blindaje.checked = false;
+
+    motorV8.checked = false;
+    turboCharger.checked = false;
+    frenosCeramicos.checked = false;
+    llantas.checked = false;
+    traccion.checked = false;
 
     actualizarCosto();
 
