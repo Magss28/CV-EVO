@@ -640,6 +640,12 @@ onSnapshot(
         </button>
         
         <button
+          onclick="editarMods('${doc.id}')"
+        >
+          🔧 Editar Mods
+        </button>
+
+        <button
           onclick="eliminarVehiculo('${doc.id}')"
         >
           🗑️ Eliminar
@@ -1453,6 +1459,62 @@ window.eliminarVenta = async (
   );
 
 };
+
+window.editarMods = async (id) => {
+
+  const motorV8 =
+  confirm("¿Tiene Motor V8?");
+
+  const turboCharger =
+  confirm("¿Tiene Turbo Charger?");
+
+  const frenosCeramicos =
+  confirm("¿Tiene Frenos Cerámicos?");
+
+  const llantas =
+  confirm("¿Tiene Llantas?");
+
+  const traccion =
+  confirm("¿Tiene Tracción?");
+
+  const motor =
+  confirm("¿Tiene Motor?");
+
+  const turbo =
+  confirm("¿Tiene Turbo?");
+
+  const frenos =
+  confirm("¿Tiene Frenos?");
+
+  const transmision =
+  confirm("¿Tiene Transmisión?");
+
+  const suspension =
+  confirm("¿Tiene Suspensión?");
+
+  const blindaje =
+  confirm("¿Tiene Blindaje?");
+
+  await updateDoc(
+    doc(db, "activos", id),
+    {
+      motorV8,
+      turboCharger,
+      frenosCeramicos,
+      llantas,
+      traccion,
+
+      motor,
+      turbo,
+      frenos,
+      transmision,
+      suspension,
+      blindaje
+    }
+  );
+
+};
+
 
 limpiarVendidos.addEventListener(
   "click",
