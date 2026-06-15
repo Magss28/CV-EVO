@@ -473,17 +473,6 @@ onSnapshot(
 
     </p>
 
-    ${
-            auto.notaModificaciones
-            ? `
-            <p>
-              📝 Observaciones:
-              ${auto.notaModificaciones}
-            </p>
-            `
-            : ""
-          }
-
     <p>
       ${
         !auto.motor &&
@@ -533,6 +522,17 @@ onSnapshot(
       : ""
     }
 
+    ${
+            auto.notaModificaciones
+            ? `
+            <p>
+              📝 Observaciones:
+              ${auto.notaModificaciones}
+            </p>
+            `
+            : ""
+      }
+
       <p>
         ${auto.estado === "Reservado"
           ? "🟡 Reservado"
@@ -567,6 +567,11 @@ onSnapshot(
           ✅ Vender
         </button>
         
+        <button
+          onclick="editarPrecioActivo('${doc.id}', ${auto.precioVenta})"
+        >
+          ✏️ Editar Precio
+        </button>
         
         <button
           onclick="eliminarVehiculo('${doc.id}')"
@@ -1303,6 +1308,34 @@ importarSuperdeportivos.addEventListener(
 
   }
 );*/
+
+window.editarPrecioActivo = async (
+  id,
+  precioActual
+) => {
+
+  const nuevoPrecio =
+  prompt(
+    "Nuevo precio de venta:",
+    precioActual
+  );
+
+  if(
+    !nuevoPrecio ||
+    isNaN(nuevoPrecio)
+  ){
+    return;
+  }
+
+  await updateDoc(
+    doc(db, "activos", id),
+    {
+      precioVenta:
+      Number(nuevoPrecio)
+    }
+  );
+
+};
 
 window.eliminarVenta = async (
   id
