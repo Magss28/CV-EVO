@@ -1442,6 +1442,107 @@ window.editarPrecioActivo = async (
 
 };
 
+const editMotorV8 =
+document.getElementById("editMotorV8");
+
+const editTurboCharger =
+document.getElementById("editTurboCharger");
+
+const editFrenosCeramicos =
+document.getElementById("editFrenosCeramicos");
+
+const editLlantas =
+document.getElementById("editLlantas");
+
+const editTraccion =
+document.getElementById("editTraccion");
+
+const editMotor =
+document.getElementById("editMotor");
+
+const editTurbo =
+document.getElementById("editTurbo");
+
+const editFrenos =
+document.getElementById("editFrenos");
+
+const editTransmision =
+document.getElementById("editTransmision");
+
+const editSuspension =
+document.getElementById("editSuspension");
+
+const editBlindaje =
+document.getElementById("editBlindaje");
+
+
+let idVehiculoEditando = null;
+
+window.editarMods = async (id) => {
+
+  idVehiculoEditando = id;
+
+  document
+  .getElementById("formularioMods")
+  .style.display = "block";
+
+};
+
+document
+.getElementById("guardarMods")
+.addEventListener(
+  "click",
+  async () => {
+
+    await updateDoc(
+      doc(
+        db,
+        "activos",
+        idVehiculoEditando
+      ),
+      {
+        motorV8:
+        editMotorV8.checked,
+
+        turboCharger:
+        editTurboCharger.checked,
+
+        frenosCeramicos:
+        editFrenosCeramicos.checked,
+
+        llantas:
+        editLlantas.checked,
+
+        traccion:
+        editTraccion.checked,
+
+        motor:
+        editMotor.checked,
+
+        turbo:
+        editTurbo.checked,
+
+        frenos:
+        editFrenos.checked,
+
+        transmision:
+        editTransmision.checked,
+
+        suspension:
+        editSuspension.checked,
+
+        blindaje:
+        editBlindaje.checked
+      }
+    );
+
+    document
+    .getElementById("formularioMods")
+    .style.display = "none";
+
+  }
+);
+
 window.eliminarVenta = async (
   id
 ) => {
@@ -1459,62 +1560,6 @@ window.eliminarVenta = async (
   );
 
 };
-
-window.editarMods = async (id) => {
-
-  const motorV8 =
-  confirm("¿Tiene Motor V8?");
-
-  const turboCharger =
-  confirm("¿Tiene Turbo Charger?");
-
-  const frenosCeramicos =
-  confirm("¿Tiene Frenos Cerámicos?");
-
-  const llantas =
-  confirm("¿Tiene Llantas?");
-
-  const traccion =
-  confirm("¿Tiene Tracción?");
-
-  const motor =
-  confirm("¿Tiene Motor?");
-
-  const turbo =
-  confirm("¿Tiene Turbo?");
-
-  const frenos =
-  confirm("¿Tiene Frenos?");
-
-  const transmision =
-  confirm("¿Tiene Transmisión?");
-
-  const suspension =
-  confirm("¿Tiene Suspensión?");
-
-  const blindaje =
-  confirm("¿Tiene Blindaje?");
-
-  await updateDoc(
-    doc(db, "activos", id),
-    {
-      motorV8,
-      turboCharger,
-      frenosCeramicos,
-      llantas,
-      traccion,
-
-      motor,
-      turbo,
-      frenos,
-      transmision,
-      suspension,
-      blindaje
-    }
-  );
-
-};
-
 
 limpiarVendidos.addEventListener(
   "click",
